@@ -11,6 +11,7 @@ use App\Http\Controllers\TransactionController;
 use App\Http\Controllers\CalculatorController;
 use App\Http\Controllers\ChequeController;
 use App\Http\Controllers\MiscController;
+use App\Http\Controllers\WhatsappApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +23,9 @@ use App\Http\Controllers\MiscController;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
+//Whatsapp Api Codes
+Route::get('/Api/Cheque',[WhatsappApiController::class,'cheque'])->name('api.cheque');
 
 
 
