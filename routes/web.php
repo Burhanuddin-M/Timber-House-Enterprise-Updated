@@ -62,11 +62,18 @@ Route::get('/superadmin/index/delete/{id}', [MyController::class, 'admin_delete'
 
 
 //Miscellenous Module
-
 Route::get('/Misc/index', [MiscController::class, 'index'])->name('misc.index');
-Route::get('/Misc/Turnover/index', [MiscController::class, 'turnover_index'])->name('turnover.index');
 
 //Trunover Module 
+Route::get('/Misc/Turnover/index', [MiscController::class, 'turnover_index'])->name('turnover.index');
+
+//Sagi Module 
+Route::get('/Misc/Sagi/index', [MiscController::class, 'sagi_index'])->name('sagi.index');
+Route::post('/Misc/Sagi/index', [MiscController::class, 'sagi_post'])->name('sagi.post');
+
+Route::get('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create'])->name('sagi.create');
+
+
 
 
 

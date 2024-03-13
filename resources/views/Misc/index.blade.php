@@ -118,6 +118,19 @@
             </div>
 
         </div>
+
+        <div class="row mt-4">
+            <div class="col-md-6">
+                <div class="card">
+                    <img src="https://www.cheggindia.com/wp-content/uploads/2023/06/What-is-Turnover-in-Business-its-Impact.png"
+                        class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
+                    <div class="card-body text-center">
+                        <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Saga</a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->
