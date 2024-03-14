@@ -14,6 +14,9 @@ return new class extends Migration
         Schema::create('sagi', function (Blueprint $table) {
             $table->id();
             $table->string('party_name');
+            $table->string('total');
+            $table->string('paid');
+            $table->string('remaining');
             $table->timestamps();
         });
     }

@@ -24,46 +24,52 @@
     <div class="text-center text-primary">
         <h3>{{$Party_name}}</h3>
     </div><br>
-    <div class="container">
-        <div class="text-center mb-4">
-            <table class="table table-bordered text-center">
-                <tr>
-                    <th>Grand Total</th>
-                    <th>Payment Given</th>
-                    <th>Payment Remaining</th>
-                </tr>
-                <tr>
-                    <td id="grandTotal"><h5>0.00</h5></td>
-                    <td id="paymentGiven"><h5>0.00</h5></td>
-                    <td id="paymentRemaining"><h5>0.00</h5></td>
-                </tr>
-            </table>
-        </div>
-    </div><br>
-    
+    <form action="{{route('sagi.create.post',['id'=>$id])}}" method="POST">
+        @csrf
+        <div class="container">
+            <div class="text-center mb-4">
+                <table class="table table-bordered text-center">
+                    <tr>
+                        <th>Grand Total</th>
+                        <th>Payment Given</th>
+                        <th>Payment Remaining</th>
+                    </tr>
+                    <tr>
+                        <td id="grandTotal"><h5>0.00</h5></td>
+                        <td id="paymentGiven"><h5>0.00</h5></td>
+                        <td id="paymentRemaining"><h5>0.00</h5></td>
+                    </tr>
+                </table>
+            </div>
+        </div><br>
         
 
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>SR No.</th>
-                    <th>Date</th>
-                    <th>Vehicle No.</th>
-                    <th>Weight</th>
-                    <th>Rate</th>
-                    <th>Total</th>
-                    <th>Freight</th>
-                    <th>Grand Total</th>
-                    <th>Payment Given</th>
-                    <th>Notes</th>
-                </tr>
-            </thead>
-            <tbody id="tableBody">
-                <!-- Rows will be dynamically added here -->
-            </tbody>
-        </table>
-        
-        <button type="button" class="btn btn-primary" id="addRow">Add Row</button>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>SR No.</th>
+                        <th>Date</th>
+                        <th>Vehicle No.</th>
+                        <th>Weight</th>
+                        <th>Rate</th>
+                        <th>Total</th>
+                        <th>Freight</th>
+                        <th>Grand Total</th>
+                        <th>Payment Given</th>
+                        <th>Notes</th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    <!-- Rows will be dynamically added here -->
+                </tbody>
+
+            </table>
+            
+            <button type="button" class="btn btn-primary" id="addRow">Add Row</button>
+            <div class="text-center">
+                <button type="submit" class="btn btn-success">Save</button>
+            </div>
+    </form>
    </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

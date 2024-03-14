@@ -10,6 +10,9 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css" rel="stylesheet">
+
+
         <!-- Bootstrap CSS -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
@@ -118,7 +121,10 @@
                     <thead>
                         <tr class="text-center">
                             <th scope="col">SR NO</th>
-                            <th scope="col">NUMBERS</th>
+                            <th scope="col">Party Name</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Paid</th>
+                            <th scope="col">Remaining</th>
                             <th scope="col">ACTION</th>
                         </tr>
                     </thead>
@@ -127,11 +133,14 @@
                             <tr class="text-center">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $Sagi->party_name }}</td>
+                                <td>{{ $Sagi->total }}</td>
+                                <td>{{ $Sagi->paid }}</td>
+                                <td>{{ $Sagi->remaining }}</td>
                                 <td>
-                                    <a href="{{ route('sagi.create', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-success">&#128065;</a>
+                                    <a href="{{ route('sagi.create', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-secondary"><i class="fas fa-pencil-alt"></i></a>
 
+<a href="{{ route('sagi.show', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
 
-                                    
 
                                 </td>
                             </tr>

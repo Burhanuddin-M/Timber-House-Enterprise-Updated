@@ -72,6 +72,9 @@ Route::get('/Misc/Sagi/index', [MiscController::class, 'sagi_index'])->name('sag
 Route::post('/Misc/Sagi/index', [MiscController::class, 'sagi_post'])->name('sagi.post');
 
 Route::get('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create'])->name('sagi.create');
+Route::post('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create_post'])->name('sagi.create.post');
+
+Route::get('/Misc/Sagi/show/{id}', [MiscController::class, 'sagi_show'])->name('sagi.show');
 
 
 
