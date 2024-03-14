@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Sagientry;
 use App\Models\Sagi;
+use App\Models\bark;
 
 class MiscController extends Controller
 {
@@ -97,5 +98,46 @@ class MiscController extends Controller
         return view('Misc.Sagi.show_sagi',compact('Party_name','Sagi'));
 
         
+    }
+
+
+    public function bark_index(){
+        return view('Misc.Bark.index');
+    }
+
+    public function bark_add(){
+
+        $Bark = bark::all();
+        return view('Misc.Bark.addEmployee',compact('Bark'));
+    }
+
+    public function bark_post(Request $request){
+
+        $Bark = New bark();
+
+        $Bark->name = $request->name;
+        $Bark->short_rate = $request->long;
+        $Bark->long_rate = $request->short;
+
+        $Bark->save();
+    return redirect('Misc/Bark/add')->with('success','Employee is added successfully');
+    }
+
+    public function bark_edit(Request $request,$id){
+        $Bark = bark::find($id);
+
+        $Bark->name = $request->name;
+        $Bark->short_rate = $request->long;
+        $Bark->long_rate = $request->short;
+
+        $Bark->save();
+    return redirect('Misc/Bark/add')->with('success','Employee is updated successfully');
+    }
+
+
+    public function bark_entry(){
+
+        $Barks = bark::all();
+          return view("Misc.Bark.barkentry",compact('Barks'));
     }
 }

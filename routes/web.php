@@ -77,6 +77,17 @@ Route::post('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create_post'
 Route::get('/Misc/Sagi/show/{id}', [MiscController::class, 'sagi_show'])->name('sagi.show');
 
 
+//Bark Peeling
+Route::get('/Misc/Bark/index', [MiscController::class, 'bark_index'])->name('bark.index');
+
+
+Route::get('/Misc/Bark/add', [MiscController::class, 'bark_add'])->name('bark.add');
+Route::post('/Misc/Bark/add', [MiscController::class, 'bark_post'])->name('bark.post');
+Route::post('/Misc/Bark/edit/{id}', [MiscController::class, 'bark_edit'])->name('bark.edit');
+
+Route::get('/Misc/Bark/entry', [MiscController::class, 'bark_entry'])->name('bark.entry');
+
+
 
 
 
