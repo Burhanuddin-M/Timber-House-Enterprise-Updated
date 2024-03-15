@@ -25,7 +25,7 @@
         <div class="d-grid gap-2">
             <a href="{{route('bark.add')}}" class="btn btn-outline-primary btn-block fw-bold mb-2">Add Beneficiary</a>
             <a href="{{route('bark.entry')}}" class="btn btn-outline-primary btn-block fw-bold mb-2">Make Entry</a>
-            <a href="" class="btn btn-outline-primary btn-block fw-bold mb-2">Report</a>
+            <a href="{{route('bark.report')}}" class="btn btn-outline-primary btn-block fw-bold mb-2">Report</a>
         </div>
     </div>
 

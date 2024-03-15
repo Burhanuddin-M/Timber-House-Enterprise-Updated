@@ -18,6 +18,9 @@
             integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
         <title>Showing number plates</title>
+        <style>
+            /* Additional CSS styles can be added here */
+        </style>
     </head>
 
     <body>
@@ -28,46 +31,79 @@
             </div>
         @endif
 
+        @if (session('fail'))
+    <div class="alert alert-danger text-center">
+        &#9888; {{ session('fail') }}
+    </div>
+@endif
+
+
         <div class="container"><br>
-            <h3 class="text-center text-primary">Bark Peeling Entries</h3><br>
-            <form action="/submit" method="post">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th>Name</th>
-                            <th>Date</th>
-                            <th>Type</th>
-                            <th>Quantity</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach ($Barks as $Bark)
-                            
-                        <tr>
-                            <td>{{$Bark->name}}</td>
-                            <td><input type="date" name="date" value="{{ date('Y-m-d') }}"></td>
-
-                            <td>
-                                <select class="form-select form-select-sm" name="type">
-                                    <option value="long">Long</option>
-                                    <option value="short">Short</option>
-                                </select>
-                            </td>
-                            <td><input type="number" class="form-control form-control-sm" name="quantity" /></td>
-                            <td><button type="submit" class="btn btn-sm btn-success">Submit</button></td>
-                        </tr>
-                        
-                        @endforeach
-                        <!-- You can add more rows as needed -->
-                    </tbody>
-                </table>
-            </form>
+            <h3 class="text-center text-primary">Make Bark/Peeling Entries</h3><br>
+           
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Name</th>
+                                    <th>Date</th>
+                                    <th>Type</th>
+                                    <th>Quantity</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach ($Barks as $Bark)
+                                <form action="{{ route('bark.entrypost') }}" method="POST">
+                                    @csrf
+                                <tr>
+                                    <input type="hidden" name="bark_id" value="{{ $Bark->id }}">
+                                    <td>{{ $Bark->name }}</td>
+                                    <td><input type="date" name="date" value="{{ date('Y-m-d') }}" required></td>
+                                    <td>
+                                        <select class="form-select form-select-sm" name="type" required>
+                                            <option selected disabled>Select</option>
+                                            <option value="long">Long</option>
+                                            <option value="short">Short</option>
+                                        </select>
+                                    </td>
+                                    <td><input type="text" class="form-control form-control-sm" name="quantity" required/></td>
+                                    <td><button type="submit" class="btn btn-sm btn-success">Submit</button></td>
+                                </tr>
+                            </form>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+<br>
+                    <div class="table-responsive">
+                        <table class="table table-stripped">
+                            <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Name</th>
+                                    <th>Type</th>
+                                    <th>Quantity</th>
+                                    <th>Rate</th>
+                                    <th>Amount</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($BarksEntry as $Barks)
+                                <tr>
+                                    <td>{{$Barks->date}}</td>
+                                    <td>{{$Barks->id}}</td>
+                                    <td>{{$Barks->type}}</td>
+                                    <td>{{$Barks->quantity}}</td>
+                                    <td>{{$Barks->rate}}</td>
+                                    <td>{{$Barks->total}}</td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                
         </div>
-        
-        
-
-        
 
         <!-- Optional JavaScript; choose one of the two! -->
 

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Sagientry;
 use App\Models\Sagi;
 use App\Models\bark;
+use App\Models\barkentry;
 
 class MiscController extends Controller
 {
@@ -138,6 +139,59 @@ class MiscController extends Controller
     public function bark_entry(){
 
         $Barks = bark::all();
-          return view("Misc.Bark.barkentry",compact('Barks'));
+        $BarksEntry = barkentry::all();
+          return view("Misc.Bark.barkentry",compact('Barks','BarksEntry'));
     }
+
+    public function bark_entry_post(Request $request){
+ 
+        $request->validate([
+            'date' => 'required',
+            'type' => 'required',
+            'quantity' => 'required',
+        ]);
+        
+
+        $id = $request->bark_id;
+        $date = $request->date;
+        $type = $request->type;
+        $quantity = $request->quantity;
+
+        $exists = Barkentry::where('bark_id', $id)
+                   ->where('date', $date)
+                   ->where('type', $type)
+                   ->exists();
+
+        if($exists){
+            return redirect('Misc/Bark/entry')->with('fail','Entry is Already Done');
+        }
+    
+        $Bark = Bark::find($id);
+        
+        if($type === "long"){
+            $rate = $Bark->long_rate;
+            $total = $quantity * $rate; // Corrected calculation for total
+        } elseif($type === "short"){
+            $rate = $Bark->short_rate;
+            $total = $quantity * $rate; // Corrected calculation for total
+        }
+    
+        $BarkEntry = new barkentry();
+        $BarkEntry->bark_id = $id;
+        $BarkEntry->date = $date;
+        $BarkEntry->type = $type;
+        $BarkEntry->quantity = $quantity;
+        $BarkEntry->rate = $rate;
+        $BarkEntry->total = $total; // Assign the calculated total
+    
+        $BarkEntry->save();
+    
+        return redirect('Misc/Bark/entry')->with('success','Entry is Successfully Done');
+    }
+
+
+    public function bark_report(){
+        return view('Misc.Bark.report');
+    }
+    
 }
