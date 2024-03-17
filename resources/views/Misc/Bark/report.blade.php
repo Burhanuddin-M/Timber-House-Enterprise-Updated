@@ -22,21 +22,45 @@
         </style>
     </head>
 
-    <body>
+    <body><br>
         <div class="container">
             <div class="table-responsive">
                 <table class="table table-stripped">
                     <thead>
+
                         <tr>
                             <th>Date</th>
                             <th>Name</th>
-                            <th>Type</th>
-                            <th>Quantity</th>
-                            <th>Rate</th>
-                            <th>Amount</th>
+                            <th>Short</th>
+                            <th>Long</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($Barks as $bark)
+                            @php
+                                $longTotal = 0;
+                                $shortTotal = 0;
+                            @endphp
+
+                            @foreach ($bark->barkentry as $barkentry)
+                                @php
+                                    if ($barkentry->type == 'short') {
+                                        $shortTotal += $barkentry->total;
+                                    } elseif ($barkentry->type == 'long') {
+                                        $longTotal += $barkentry->total;
+                                    }
+                                @endphp
+                            @endforeach
+
+                            @if ($longTotal > 0 || $shortTotal > 0)
+                                <tr>
+                                    <td>{{ \Carbon\Carbon::parse($barkentry->date)->format('jS M y') }}</td>
+                                    <td>{{ $bark->name }}</td>
+                                    <td>{{ $shortTotal }}</td>
+                                    <td>{{ $longTotal }}</td>
+                                </tr>
+                            @endif
+                        @endforeach
 
                     </tbody>
                 </table>
@@ -55,13 +79,13 @@
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--
-                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-                </script>
-                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-                </script>
-                -->
+                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+                            </script>
+                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+                            </script>
+                            -->
     </body>
 
     </html>
