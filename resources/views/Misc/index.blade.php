@@ -122,7 +122,7 @@
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card">
-                    <img src="https://www.cheggindia.com/wp-content/uploads/2023/06/What-is-Turnover-in-Business-its-Impact.png"
+                    <img src="https://sarkaripariksha.com/daily-news-images/1697435488-news.jpeg"
                         class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
                     <div class="card-body text-center">
                         <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Saga</a>
@@ -135,7 +135,7 @@
         <div class="row mt-4">
             <div class="col-md-6">
                 <div class="card">
-                    <img src="https://www.cheggindia.com/wp-content/uploads/2023/06/What-is-Turnover-in-Business-its-Impact.png"
+                    <img src="https://www.shutterstock.com/image-photo/bark-peeling-tree-carbillino-galicia-600nw-2254808671.jpg"
                         class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
                     <div class="card-body text-center">
                         <a href="{{ route('bark.index') }}" class="btn btn-primary">Bark Peeling</a>

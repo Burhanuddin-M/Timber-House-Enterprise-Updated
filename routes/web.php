@@ -91,6 +91,10 @@ Route::post('/Misc/Bark/entry', [MiscController::class, 'bark_entry_post'])->nam
 
 Route::get('/Misc/Bark/report', [MiscController::class, 'bark_report'])->name('bark.report');
 
+Route::get('/Misc/Bark/report/{id}', [MiscController::class, 'bark_report_show'])->name('bark.report.show');
+
+Route::post('/Misc/Bark/report/show/{id}', [MiscController::class, 'show_report'])->name('bark.showreport');
+
 
 
 

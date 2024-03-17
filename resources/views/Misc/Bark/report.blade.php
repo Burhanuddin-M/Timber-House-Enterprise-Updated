@@ -22,46 +22,31 @@
         </style>
     </head>
 
-    <body><br>
+    <body>
         <div class="container">
             <div class="table-responsive">
-                <table class="table table-stripped">
+                <table class="table table-stripped"><br>
                     <thead>
-
                         <tr>
-                            <th>Date</th>
+                            <th>SR No</th>
                             <th>Name</th>
-                            <th>Short</th>
-                            <th>Long</th>
+                            <th>Action</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($Barks as $bark)
-                            @php
-                                $longTotal = 0;
-                                $shortTotal = 0;
-                            @endphp
-
-                            @foreach ($bark->barkentry as $barkentry)
-                                @php
-                                    if ($barkentry->type == 'short') {
-                                        $shortTotal += $barkentry->total;
-                                    } elseif ($barkentry->type == 'long') {
-                                        $longTotal += $barkentry->total;
-                                    }
-                                @endphp
-                            @endforeach
-
-                            @if ($longTotal > 0 || $shortTotal > 0)
-                                <tr>
-                                    <td>{{ \Carbon\Carbon::parse($barkentry->date)->format('jS M y') }}</td>
-                                    <td>{{ $bark->name }}</td>
-                                    <td>{{ $shortTotal }}</td>
-                                    <td>{{ $longTotal }}</td>
-                                </tr>
-                            @endif
+                        @foreach($Barks as $Bark)
+            
+                            <tr>
+                                <td>{{ $loop->index+1 }}</td>
+                                <td>{{ $Bark->name }}</td>
+                                <td>
+                                    <a href="{{ route('bark.report.show',['id'=>$Bark->id]) }}" class="btn btn-sm btn-primary">Open</a>
+                                </td>
+                                
+                            </tr>
                         @endforeach
 
+                    
                     </tbody>
                 </table>
             </div>
@@ -79,14 +64,15 @@
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
         <!--
-                            <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
-                                integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
-                            </script>
-                            <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
-                                integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
-                            </script>
-                            -->
+                <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"
+                    integrity="sha384-IQsoLXl5PILFhosVNubq5LC7Qb9DXgDA9i+tQ8Zj3iwWAwPtgFTxbJ8NT4GN1R8p" crossorigin="anonymous">
+                </script>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.min.js"
+                    integrity="sha384-cVKIPhGWiC2Al4u+LWgxfKTRIcfu0JTxR+EQDz/bgldoEyl4H0zUF0QKbrJ0EcQF" crossorigin="anonymous">
+                </script>
+                -->
     </body>
 
     </html>
 @endsection
+      

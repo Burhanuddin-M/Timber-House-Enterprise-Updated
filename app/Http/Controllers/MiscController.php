@@ -207,11 +207,59 @@ class MiscController extends Controller
 
     public function bark_report()
     {
+        $startDate = '2024-01-01'; // Your start date
+        $endDate = '2024-03-31';   // Your end date
+        $barkId = 8; // Assuming you have a specific bark_id
+        
+        $shortTotal = BarkEntry::where('type', 'short')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('bark_id', $barkId)
+            ->sum('total');
+        
+        $longTotal = BarkEntry::where('type', 'long')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('bark_id', $barkId)
+            ->sum('total');
+        
+        $total = $shortTotal + $longTotal;
+        
 
-       $Barks = bark::with('barkentry')->get();
+
+        // dd($total);
+
+        $Barks = bark::all();
+        
 
 
         return view('Misc.Bark.report',compact('Barks'));
+    }
+
+    public function bark_report_show($id){
+        return view('Misc.Bark.customise',compact('id'));
+    }
+
+    public function show_report($id,Request $request){
+    
+        $startDate = $request->start_date;
+        $endDate = $request->end_date;
+
+        $Name = bark::find($id)->name;
+
+
+        
+        $shortTotal = BarkEntry::where('type', 'short')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('bark_id', $id)
+            ->sum('total');
+        
+        $longTotal = BarkEntry::where('type', 'long')
+            ->whereBetween('date', [$startDate, $endDate])
+            ->where('bark_id', $id)
+            ->sum('total');
+        
+        $total = $shortTotal + $longTotal;
+
+        return view('Misc.Bark.output',compact('total','shortTotal','longTotal','Name','startDate','endDate'));
     }
 
 }
