@@ -7,12 +7,14 @@ use App\Models\Sagientry;
 use App\Models\Sagi;
 use App\Models\bark;
 use App\Models\barkentry;
+use App\Models\credentials;
 
 class MiscController extends Controller
 {
     public function index()
     {
-        return view('Misc.index');
+        $credential = credentials::with(['permission'])->findOrFail(session('user_id'));
+        return view('Misc.index',compact('credential'));
     }
 
     public function turnover_index()

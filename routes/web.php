@@ -61,49 +61,44 @@ Route::post('/superadmin/index/update', [MyController::class, 'admin_update'])->
 Route::get('/superadmin/index/delete/{id}', [MyController::class, 'admin_delete'])->name('admin.delete');
 
 
-//Miscellenous Module
-Route::get('/Misc/index', [MiscController::class, 'index'])->name('misc.index');
-
-//Trunover Module 
-Route::get('/Misc/Turnover/index', [MiscController::class, 'turnover_index'])->name('turnover.index');
-
-//Sagi Module 
-Route::get('/Misc/Sagi/index', [MiscController::class, 'sagi_index'])->name('sagi.index');
-Route::post('/Misc/Sagi/index', [MiscController::class, 'sagi_post'])->name('sagi.post');
-
-Route::get('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create'])->name('sagi.create');
-Route::post('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create_post'])->name('sagi.create.post');
-
-Route::get('/Misc/Sagi/show/{id}', [MiscController::class, 'sagi_show'])->name('sagi.show');
-
-
-//Bark Peeling
-Route::get('/Misc/Bark/index', [MiscController::class, 'bark_index'])->name('bark.index');
-
-
-Route::get('/Misc/Bark/add', [MiscController::class, 'bark_add'])->name('bark.add');
-Route::post('/Misc/Bark/add', [MiscController::class, 'bark_post'])->name('bark.post');
-Route::post('/Misc/Bark/edit/{id}', [MiscController::class, 'bark_edit'])->name('bark.edit');
-
-Route::get('/Misc/Bark/entry', [MiscController::class, 'bark_entry'])->name('bark.entry');
-Route::post('/Misc/Bark/entry', [MiscController::class, 'bark_entry_post'])->name('bark.entrypost');
-
-
-Route::get('/Misc/Bark/report', [MiscController::class, 'bark_report'])->name('bark.report');
-
-Route::get('/Misc/Bark/report/{id}', [MiscController::class, 'bark_report_show'])->name('bark.report.show');
-
-Route::post('/Misc/Bark/report/show/{id}', [MiscController::class, 'show_report'])->name('bark.showreport');
-
-
-
-
-
-
 Route::group(['middleware' => ['session_checker']], function () {
 
     //Dashboard Page
     Route::get('/dashboard', [MyController::class, 'dashboard'])->name('dashboard');
+
+    //Misc Module
+    Route::group(['middleware' => ['misc_checker']], function () {
+        Route::get('/Misc/index', [MiscController::class, 'index'])->name('misc.index');
+    });
+
+    //Nilgiri Module
+    Route::group(['middleware' => ['nilgiri_checker']], function () {
+        Route::get('/Misc/Sagi/index', [MiscController::class, 'sagi_index'])->name('sagi.index');
+        Route::post('/Misc/Sagi/index', [MiscController::class, 'sagi_post'])->name('sagi.post');
+        Route::get('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create'])->name('sagi.create');
+        Route::post('/Misc/Sagi/create/{id}', [MiscController::class, 'sagi_create_post'])->name('sagi.create.post');
+        Route::get('/Misc/Sagi/show/{id}', [MiscController::class, 'sagi_show'])->name('sagi.show');
+    });
+
+    //Peeling Module
+    Route::group(['middleware' => ['peeling_checker']], function () {
+        Route::get('/Misc/Bark/index', [MiscController::class, 'bark_index'])->name('bark.index');
+        Route::get('/Misc/Bark/add', [MiscController::class, 'bark_add'])->name('bark.add');
+        Route::post('/Misc/Bark/add', [MiscController::class, 'bark_post'])->name('bark.post');
+        Route::post('/Misc/Bark/edit/{id}', [MiscController::class, 'bark_edit'])->name('bark.edit');
+        Route::get('/Misc/Bark/entry', [MiscController::class, 'bark_entry'])->name('bark.entry');
+        Route::post('/Misc/Bark/entry', [MiscController::class, 'bark_entry_post'])->name('bark.entrypost');
+        Route::get('/Misc/Bark/report', [MiscController::class, 'bark_report'])->name('bark.report');
+        Route::get('/Misc/Bark/report/{id}', [MiscController::class, 'bark_report_show'])->name('bark.report.show');
+        Route::post('/Misc/Bark/report/show/{id}', [MiscController::class, 'show_report'])->name('bark.showreport');
+    });
+
+    //Turnover Module
+    Route::group(['middleware' => ['turnover_checker']], function () {
+        Route::get('/Misc/Turnover/index', [MiscController::class, 'turnover_index'])->name('turnover.index');
+    });
+
+
 
     Route::group(['middleware' => ['cheque_checker']], function () {
         //Cheque Module

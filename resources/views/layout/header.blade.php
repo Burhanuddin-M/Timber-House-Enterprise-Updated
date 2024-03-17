@@ -31,6 +31,9 @@
                 @if (in_array('CHEQUE',json_decode($credential->permission->permissions) ))
                     <a class="nav-link" href="{{ route('cheque.index') }}">CHEQUE</a>
                 @endif
+                @if (in_array('MISC',json_decode($credential->permission->permissions) ))
+                    <a class="nav-link" href="{{ route('misc.index') }}">CHEQUE</a>
+                @endif
 
 
 

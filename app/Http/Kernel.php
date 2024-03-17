@@ -8,6 +8,10 @@ use App\Http\Middleware\DocumentChecker;
 use App\Http\Middleware\ProductChecker;
 use App\Http\Middleware\SessionChecker;
 use App\Http\Middleware\ChequeChecker;
+use App\Http\Middleware\MiscChecker;
+use App\Http\Middleware\TurnoverChecker;
+use App\Http\Middleware\PeelingChecker;
+use App\Http\Middleware\NilgiriChecker;
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
 
 class Kernel extends HttpKernel
@@ -76,5 +80,9 @@ class Kernel extends HttpKernel
         'document_checker' => DocumentChecker::class,
         'product_checker' => ProductChecker::class,
         'cheque_checker' => ChequeChecker::class,
+        'misc_checker' => MiscChecker::class,
+        'nilgiri_checker' => NilgiriChecker::class,
+        'peeling_checker' => PeelingChecker::class,
+        'turnover_checker' => TurnoverChecker::class,
     ];
 }

@@ -106,44 +106,50 @@
 
     <div class="container">
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="https://www.cheggindia.com/wp-content/uploads/2023/06/What-is-Turnover-in-Business-its-Impact.png"
-                        class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
-                    <div class="card-body text-center">
-                        <a href="{{ route('turnover.index') }}" class="btn btn-primary">Turnover</a>
+        @if (in_array('TURNOVER', json_decode($credential->permission->permissions)))
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="https://www.cheggindia.com/wp-content/uploads/2023/06/What-is-Turnover-in-Business-its-Impact.png"
+                            class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
+                        <div class="card-body text-center">
+                            <a href="{{ route('turnover.index') }}" class="btn btn-primary">Turnover</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        @endif
 
-        </div>
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="https://sarkaripariksha.com/daily-news-images/1697435488-news.jpeg"
-                        class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
-                    <div class="card-body text-center">
-                        <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Saga</a>
+        @if (in_array('NILGIRI', json_decode($credential->permission->permissions)))
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="https://sarkaripariksha.com/daily-news-images/1697435488-news.jpeg"
+                            class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
+                        <div class="card-body text-center">
+                            <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Saga</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        @endif
 
-        </div>
 
-        <div class="row mt-4">
-            <div class="col-md-6">
-                <div class="card">
-                    <img src="https://www.shutterstock.com/image-photo/bark-peeling-tree-carbillino-galicia-600nw-2254808671.jpg"
-                        class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
-                    <div class="card-body text-center">
-                        <a href="{{ route('bark.index') }}" class="btn btn-primary">Bark Peeling</a>
+        @if (in_array('TURNOVER', json_decode($credential->permission->permissions)))
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <div class="card">
+                        <img src="https://www.shutterstock.com/image-photo/bark-peeling-tree-carbillino-galicia-600nw-2254808671.jpg"
+                            class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
+                        <div class="card-body text-center">
+                            <a href="{{ route('bark.index') }}" class="btn btn-primary">Bark Peeling</a>
+                        </div>
                     </div>
                 </div>
             </div>
+        @endif
 
-        </div>
     </div>
 
     <!-- Optional JavaScript; choose one of the two! -->

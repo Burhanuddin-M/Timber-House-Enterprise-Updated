@@ -123,6 +123,10 @@
                                     <option value="CFT">CFT</option>
                                     <option value="PRODUCTS">PRODUCTS</option>
                                     <option value="CHEQUE">CHEQUE</option>
+                                    <option value="MISC">MISC</option>
+                                    <option value="NILGIRI">NILGIRI</option>
+                                    <option value="PEELING">PEELING</option>
+                                    <option value="TURNOVER">TURNOVER</option>
                                 </select>
                             </div>
 
@@ -217,7 +221,7 @@
                                                     <label for="employeeSalary" class="form-label">Permissions</label>
                                                     <select class="form-control" name="permissions[]" multiple
                                                         required>
-                                                        @foreach (['DOCUMENTS', 'ATTENDENCE', 'CFT', 'PRODUCTS','CHEQUE'] as $option)
+                                                        @foreach (['DOCUMENTS', 'ATTENDENCE', 'CFT', 'PRODUCTS','CHEQUE','MISC','NILGIRI','PEELING','TURNOVER'] as $option)
                                                             <option value="{{ $option }}"
                                                                 @if (is_array($Credential->permission->permissions) && in_array($option, $Credential->permission->permissions)) selected @endif>
                                                                 {{ ucfirst($option) }}
