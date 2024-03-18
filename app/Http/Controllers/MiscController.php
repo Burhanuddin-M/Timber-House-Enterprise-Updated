@@ -19,14 +19,19 @@ class MiscController extends Controller
 
     public function turnover_index()
     {
-        return view('Misc.Turnover.index');
+        // return view('Misc.Turnover.index');
+        //under maintenace
+        return view('Errors.maintenance');
     }
 
     public function sagi_index()
     {
-
+    
         $Sagis = sagi::all();
-        return view('Misc.Sagi.index', compact('Sagis'));
+        // return view('Misc.Sagi.index', compact('Sagis'));
+
+        //under maintenace
+        return view('Errors.maintenance');
     }
 
     public function sagi_post(Request $request)
