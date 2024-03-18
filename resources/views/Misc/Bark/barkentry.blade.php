@@ -3,7 +3,6 @@
 @section('content')
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
@@ -25,9 +24,12 @@
                 overflow-x: auto;
             }
         }
+        /* Border for all sides of each table cell */
+        table td {
+            border: 1px solid black;
+        }
     </style>
 </head>
-
 <body>
 
     @if (session('success'))
@@ -63,7 +65,7 @@
                         <tr>
                             <input type="hidden" name="bark_id" value="{{ $Bark->id }}">
                             <td>{{ $Bark->name }}</td>
-                            <td><input type="date" name="date" value="{{ date('Y-m-d') }}" required></td>
+                            <td><input type="date" name="date" value="{{ date('Y-m-d') }}" required class="form-control"></td>
                             <td>
                                 <select class="form-select form-select-sm" name="type" required>
                                     <option selected disabled>Select</option>
@@ -71,8 +73,7 @@
                                     <option value="short">Short</option>
                                 </select>
                             </td>
-                            <td><input type="text" class="form-control form-control-sm" name="quantity" required />
-                            </td>
+                            <td><input type="text" class="form-control" name="quantity" required></td>
                             <td><button type="submit" class="btn btn-sm btn-success">Submit</button></td>
                         </tr>
                     </form>
@@ -82,7 +83,7 @@
         </div>
         <br>
         <div class="table-responsive">
-            <table class="table table-stripped">
+            <table class="table table-stripped" style="border:1px solid black">
                 <thead>
                     <tr>
                         <th>Date</th>
@@ -93,7 +94,7 @@
                         <th>Amount</th>
                     </tr>
                 </thead>
-                <tbody>
+                <tbody style="border:1px solid black;">
                     @foreach($Barks as $Bark)
                     @foreach($Bark->barkentry as $barkentry)
                         <tr>
@@ -133,5 +134,4 @@
 </body>
 
 </html>
-
 @endsection
