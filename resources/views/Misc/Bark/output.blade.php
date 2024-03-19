@@ -60,19 +60,26 @@
                                 <tr>
                                     <th scope="col">Name</th>
                                     <th scope="col">Long</th>
+                                    <th scope="col">Average</th>
                                     <th scope="col">Short</th>
+                                    <th scope="col">Average</th>
                                     <th scope="col">Total</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>{{$Name}}</td>
-                                    <td>{{$longTotal}}</td>
-                                    <td>{{$shortTotal}}</td>
-                                    <td>{{$total}}</td>
+                                    <td>{{ $Name }}</td>
+                                    <td>{{ $longTotal }}</td>
+                                    <td>{{ $longCount > 0 ? number_format($longTotal / $longCount, 2) : 0 }}</td>
+                                    <td>{{ $shortTotal }}</td>
+                                    <td>{{ $shortCount > 0 ? number_format($shortTotal / $shortCount, 2) : 0 }}</td>
+                                    <td>{{ $total }}</td> 
                                 </tr>
                             </tbody>
                         </table>
+                        
+                        
+                        
                     </div>
                 </div>
             </div>
