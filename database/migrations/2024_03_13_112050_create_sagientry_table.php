@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('sagientry', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('sagi_id');
-            $table->string('sr_no')->nullable();
+            // $table->string('sr_no')->nullable();
             $table->string('date')->nullable();
             $table->string('vehicle_no')->nullable();
             $table->string('weight')->nullable();

@@ -15,11 +15,15 @@
 
         <title>Timber House Enterprise</title>
     </head>
-
+    
     <body>
+        
 
         <div class="container"><br>
-
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary"><a href="{{route('sagi.index')}}"
+                        class="text-decoration-none text-white">&#8592;</a></button>
+            </div><br>
             <div class="text-center text-primary">
                 <h3>{{ $Party_name }}</h3>
             </div><br>
@@ -41,13 +45,19 @@
                             <td id="paymentRemaining">
                                 <h5>0.00</h5>
                             </td>
+                            
                         </tr>
                     </table>
                 </div>
             </div><br>
 
 
-
+            @if (session('success'))
+            <div class="alert alert-success text-center">
+                &#9989; {{ session('success') }}
+            </div>
+        @endif
+        <div class="table-responsive">
             <table class="table">
                 <thead>
                     <tr>
@@ -64,10 +74,9 @@
                     </tr>
                 </thead>
                 <tbody>
-
                     @foreach ($Sagi->sagientry as $Entry)
                         <tr>
-                            <td>{{ $Entry->sr_no }}</td>
+                            <td>{{ $loop->index+1}}</td>
                             <td>{{ $Entry->date }}</td>
                             <td>{{ $Entry->vehicle_no }}</td>
                             <td>{{ $Entry->weight }}</td>
@@ -79,12 +88,28 @@
                             <td>{{ $Entry->payment_notes }}</td>
                         </tr>
                     @endforeach
-
                 </tbody>
             </table>
+        </div>
+        
 
 
         </div>
+
+        <script>
+            window.addEventListener('DOMContentLoaded', (event) => {
+                // Fetch the values from the server-side code or wherever they are calculated
+                const grandTotalValue = parseFloat({{ $GrandTotal ?? 0 }});
+                const paymentGivenValue = parseFloat({{ $PaymentGiven ?? 0 }});
+                const paymentRemainingValue = parseFloat({{ $PaymentRemaining ?? 0 }});
+        
+                // Update the content of the elements
+                document.getElementById('grandTotal').innerHTML = `<h5>${grandTotalValue.toFixed(2)}</h5>`;
+                document.getElementById('paymentGiven').innerHTML = `<h5>${paymentGivenValue.toFixed(2)}</h5>`;
+                document.getElementById('paymentRemaining').innerHTML = `<h5>${paymentRemainingValue.toFixed(2)}</h5>`;
+            });
+        </script>
+        
 
         <!-- Optional JavaScript; choose one of the two! -->
 

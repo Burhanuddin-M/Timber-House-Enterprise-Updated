@@ -145,7 +145,7 @@
                             <img src="https://sarkaripariksha.com/daily-news-images/1697435488-news.jpeg"
                                 class="card-img-top img-fluid" height="200px" width="200px" alt="Miscelleneous Image">
                             <div class="card-body text-center">
-                                <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Saga</a>
+                                <a href="{{ route('sagi.index') }}" class="btn btn-primary">Nilgiri/Sagi</a>
                             </div>
                         </div>
                     </div>

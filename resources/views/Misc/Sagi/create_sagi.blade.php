@@ -20,6 +20,10 @@
 <body>
 
    <div class="container"><br>
+    <div class="d-flex justify-content-center">
+        <button class="btn btn-primary"><a href="{{route('sagi.index')}}"
+                class="text-decoration-none text-white">&#8592;</a></button>
+    </div><br>
 
     <div class="text-center text-primary">
         <h3>{{$Party_name}}</h3>
@@ -27,7 +31,7 @@
     <form action="{{route('sagi.create.post',['id'=>$id])}}" method="POST">
         @csrf
         <div class="container">
-            <div class="text-center mb-4">
+            {{-- <div class="text-center mb-4">
                 <table class="table table-bordered text-center">
                     <tr>
                         <th>Grand Total</th>
@@ -40,14 +44,14 @@
                         <td id="paymentRemaining"><h5>0.00</h5></td>
                     </tr>
                 </table>
-            </div>
+            </div> --}}
         </div><br>
         
 
             <table class="table">
                 <thead>
                     <tr>
-                        <th>SR No.</th>
+                        {{-- <th>SR No.</th> --}}
                         <th>Date</th>
                         <th>Vehicle No.</th>
                         <th>Weight</th>
@@ -78,22 +82,21 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
     </script>
-
+{{-- <td><input type="text" class="form-control" name="srno[]" readonly></td> --}}
     <!-- JavaScript for adding rows dynamically and calculations -->
     <script>
         document.getElementById('addRow').addEventListener('click', function() {
             var tableBody = document.getElementById('tableBody');
             var newRow = document.createElement('tr');
             newRow.innerHTML = `
-                <td><input type="text" class="form-control" name="srno[]" readonly></td>
                 <td><input type="date" class="form-control" name="date[]"></td>
                 <td><input type="text" class="form-control" name="vehicleno[]"></td>
-                <td><input type="text" class="form-control weight" name="weight[]"></td>
-                <td><input type="text" class="form-control rate" name="rate[]"></td>
-                <td><input type="text" class="form-control total" name="total[]" readonly></td>
-                <td><input type="text" class="form-control freight" name="freight[]"></td>
-                <td><input type="text" class="form-control grandtotal" name="grandtotal[]" readonly></td>
-                <td><input type="text" class="form-control paymentgiven" name="paymentgiven[]"></td>
+                <td><input type="number" class="form-control weight" name="weight[]"></td>
+                <td><input type="number" class="form-control rate" name="rate[]"></td>
+                <td><input type="number" class="form-control total" name="total[]" readonly></td>
+                <td><input type="number" class="form-control freight" name="freight[]"></td>
+                <td><input type="number" class="form-control grandtotal" name="grandtotal[]" readonly></td>
+                <td><input type="number" class="form-control paymentgiven" name="paymentgiven[]"></td>
                 <td><input type="text" class="form-control" name="notes[]"></td>
             `;
             tableBody.appendChild(newRow);

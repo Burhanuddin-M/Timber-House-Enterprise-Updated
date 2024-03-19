@@ -19,7 +19,7 @@ class MiscController extends Controller
 
     public function turnover_index()
     {
-        // return view('Misc.Turnover.index');
+        return view('Misc.Turnover.index');
         //under maintenace
         return view('Errors.maintenance');
     }
@@ -28,7 +28,7 @@ class MiscController extends Controller
     {
     
         $Sagis = sagi::all();
-        // return view('Misc.Sagi.index', compact('Sagis'));
+        return view('Misc.Sagi.index', compact('Sagis'));
 
         //under maintenace
         return view('Errors.maintenance');
@@ -50,7 +50,14 @@ class MiscController extends Controller
 
     public function sagi_create($id)
     {
-        $Sagi = sagi::find($id);
+        $Sagi = sagi::with([
+            'sagientry' => function ($query) use ($id) {
+                $query->where('sagi_id', $id);
+            }
+        ])->find($id);
+    
+        $GrandTotal = $Sagi->sagientry->sum('grand_total');
+   
 
         $Party_name = $Sagi->party_name;
 
@@ -63,7 +70,7 @@ class MiscController extends Controller
     public function sagi_create_post($id, Request $request)
     {
         // Retrieve arrays from the request
-        $srnos = $request->input('srno');
+        // $srnos = $request->input('srno');
         $dates = $request->input('date');
         $vehiclenos = $request->input('vehicleno');
         $weights = $request->input('weight');
@@ -75,10 +82,10 @@ class MiscController extends Controller
         $notes = $request->input('notes');
 
         // Loop through the arrays and create entries
-        foreach ($srnos as $key => $srno) {
+        foreach ($dates as $key => $date) {
             $sagiEntry = new Sagientry();
             $sagiEntry->sagi_id = $id;
-            $sagiEntry->sr_no = $srno;
+            // $sagiEntry->sr_no = $srno;
             $sagiEntry->date = $dates[$key];
             $sagiEntry->vehicle_no = $vehiclenos[$key];
             $sagiEntry->weight = $weights[$key];
@@ -96,7 +103,7 @@ class MiscController extends Controller
         }
 
         // Optionally, you can redirect the user after saving
-        return redirect("Misc/Sagi/show/" . $id);
+        return redirect("Misc/Sagi/show/" . $id)->with('success','Entry is done Successfully');
 
 
     }
@@ -109,14 +116,18 @@ class MiscController extends Controller
                 $query->where('sagi_id', $id);
             }
         ])->find($id);
-
+    
+        $GrandTotal = $Sagi->sagientry->sum('grand_total');
+    
+        $PaymentGiven = $Sagi->sagientry->sum('payment_given');
+    
+        $PaymentRemaining = $GrandTotal - $PaymentGiven;
+    
         $Party_name = $Sagi->party_name;
-
-        return view('Misc.Sagi.show_sagi', compact('Party_name', 'Sagi'));
-
-
+    
+        return view('Misc.Sagi.show_sagi', compact('Party_name', 'Sagi', 'GrandTotal', 'PaymentGiven', 'PaymentRemaining'));
     }
-
+    
 
     public function bark_index()
     {

@@ -124,7 +124,7 @@
                             <th scope="col">Party Name</th>
                             <th scope="col">Total</th>
                             <th scope="col">Paid</th>
-                            <th scope="col">Remaining</th>
+                            <th scope="col">Remaining</th>           
                             <th scope="col">ACTION</th>
                         </tr>
                     </thead>
@@ -133,19 +133,17 @@
                             <tr class="text-center">
                                 <th scope="row">{{ $loop->iteration }}</th>
                                 <td>{{ $Sagi->party_name }}</td>
-                                <td>{{ $Sagi->total }}</td>
-                                <td>{{ $Sagi->paid }}</td>
-                                <td>{{ $Sagi->remaining }}</td>
+                                <td>{{ $Sagi->sagientry->sum('grand_total') }}</td>
+                                <td>{{ $Sagi->sagientry->sum('payment_given') }}</td>
+                                <td>{{ $Sagi->sagientry->sum('grand_total') - $Sagi->sagientry->sum('payment_given') }}</td>
                                 <td>
                                     <a href="{{ route('sagi.create', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-secondary"><i class="fas fa-pencil-alt"></i></a>
-
-<a href="{{ route('sagi.show', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
-
-
+                                    <a href="{{ route('sagi.show', ['id' => $Sagi->id]) }}" class="btn btn-sm btn-success"><i class="fas fa-eye"></i></a>
                                 </td>
                             </tr>
                         @endforeach
                     </tbody>
+                    
                 </table>
             @endif
         </div>
