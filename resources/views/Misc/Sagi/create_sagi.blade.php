@@ -70,7 +70,7 @@
                             <tr>
                                 <th>SR.</th>
                                 <th>Date</th>
-                                <th>No.</th>
+                                <th>Vehicle No.</th>
                                 <th>Weight</th>
                                 <th>Rate</th>
                                 <th>Total</th>
@@ -145,12 +145,12 @@
     <td><input type="date" name="date[]" style="width: 100px;" value="{{ \Carbon\Carbon::now()->toDateString() }}"></td>
 
         <td><input type="text" class="vehicleno" name="vehicleno[]" style="width: 100px;"></td>
-        <td><input type="number" class="weight" name="weight[]" style="width: 100px;"></td>
-        <td><input type="number" class="rate" name="rate[]" style="width: 100px;"></td>
-        <td><input type="number" class="total" name="total[]" readonly style="width: 100px;"></td>
-        <td><input type="number" class="freight" name="freight[]" style="width: 100px;"></td>
-        <td><input type="number" class="grandtotal" name="grandtotal[]" readonly style="width: 100px;"></td>
-        <td><input type="number" class="paymentgiven" name="paymentgiven[]" style="width: 100px;"></td>
+        <td><input type="text" class="weight" name="weight[]" style="width: 100px;"></td>
+        <td><input type="text" class="rate" name="rate[]" style="width: 100px;"></td>
+        <td><input type="text" class="total" name="total[]" readonly style="width: 100px;"></td>
+        <td><input type="text" class="freight" name="freight[]" style="width: 100px;"></td>
+        <td><input type="text" class="grandtotal" name="grandtotal[]" readonly style="width: 100px;"></td>
+        <td><input type="text" class="paymentgiven" name="paymentgiven[]" style="width: 100px;"></td>
         <td><input type="text" name="notes[]" style="width: 150px;"></td>
     `;
                 tableBody.appendChild(newRow);
