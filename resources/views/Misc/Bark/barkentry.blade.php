@@ -73,8 +73,8 @@
                             <td>
                                 <select  name="type" required>
                                     <option selected disabled>Select</option>
-                                    <option value="long">Long</option>
                                     <option value="short">Short</option>
+                                    <option value="long">Long</option>
                                 </select>
                             </td>
                             <td><input type="text" class="form-control" name="quantity" required></td>
@@ -87,32 +87,49 @@
         </div>
         <br>
         <div class="table-responsive">
-            <table class="table table-stripped" style="border:1px solid black">
+             <table class="table table-stripped" style="border:1px solid black">
                 <thead>
                     <tr>
                         <th>Date</th>
                         <th>Name</th>
-                        <th>Type</th>
-                        <th>Quantity</th>
-                        <th>Rate</th>
-                        <th>Amount</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody style="border:1px solid black;">
+                    @php
+                        $totals = []; // Initialize an array to store totals for each date and employee
+                    @endphp
                     @foreach($Barks as $Bark)
-                    @foreach($Bark->barkentry as $barkentry)
-                        <tr>
-                            <td>{{ \Carbon\Carbon::parse($barkentry->date)->format('jS M y') }}</td>
-
-                            <td>{{ $Bark->name }}</td>
-                            <td>{{ $barkentry->type }}</td>
-                            <td>{{ $barkentry->quantity }}</td>
-                            <td>{{ $barkentry->rate }}</td>
-                            <td>{{ $barkentry->total }}</td>
-                        </tr>
+                        @foreach($Bark->barkentry as $barkentry)
+                            @php
+                                $date = \Carbon\Carbon::parse($barkentry->date)->format('jS M y');
+                                $employee = $Bark->name;
+                                $type = $barkentry->type;
+                                $total = $barkentry->total;
+            
+                                // Initialize total to 0 if not already set
+                                if (!isset($totals[$date][$employee])) {
+                                    $totals[$date][$employee] = 0;
+                                }
+            
+                                // Add total to the appropriate type based on the type of entry
+                                if ($type === 'long' || $type === 'short') {
+                                    $totals[$date][$employee] += $total;
+                                }
+                            @endphp
+                        @endforeach
                     @endforeach
-                @endforeach
-                
+            
+                    {{-- Output totals --}}
+                    @foreach($totals as $date => $employees)
+                        @foreach($employees as $employee => $total)
+                            <tr>
+                                <td>{{ $date }}</td>
+                                <td>{{ $employee }}</td>
+                                <td>{{ $total }}</td>
+                            </tr>
+                        @endforeach
+                    @endforeach
                 </tbody>
             </table>
         </div>
