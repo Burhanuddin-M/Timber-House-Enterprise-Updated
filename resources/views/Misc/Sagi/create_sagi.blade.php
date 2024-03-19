@@ -142,7 +142,7 @@
                 var tableBody = document.getElementById('tableBody');
                 var newRow = document.createElement('tr');
                 newRow.innerHTML = `
-    <td><input type="date" name="date[]" style="width: 100px;" value="{{ \Carbon\Carbon::now()->toDateString() }}"></td>
+    <td><input type="date" name="date[]" style="width: 100px;"></td>
 
         <td><input type="text" class="vehicleno" name="vehicleno[]" style="width: 100px;"></td>
         <td><input type="text" class="weight" name="weight[]" style="width: 100px;"></td>

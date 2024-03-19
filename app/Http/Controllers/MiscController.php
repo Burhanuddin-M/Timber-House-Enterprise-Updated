@@ -72,35 +72,38 @@ class MiscController extends Controller
         // Retrieve arrays from the request
         // $srnos = $request->input('srno');
         $dates = $request->input('date');
-        $vehiclenos = $request->input('vehicleno');
-        $weights = $request->input('weight');
-        $rates = $request->input('rate');
-        $totals = $request->input('total');
-        $freights = $request->input('freight');
-        $grandtotals = $request->input('grandtotal');
-        $paymentgivens = $request->input('paymentgiven');
-        $notes = $request->input('notes');
+$vehiclenos = $request->input('vehicleno');
+$weights = $request->input('weight');
+$rates = $request->input('rate');
+$totals = $request->input('total');
+$freights = $request->input('freight');
+$grandtotals = $request->input('grandtotal');
+$paymentgivens = $request->input('paymentgiven');
+$notes = $request->input('notes');
 
-        // Loop through the arrays and create entries
-        foreach ($dates as $key => $date) {
-            $sagiEntry = new Sagientry();
-            $sagiEntry->sagi_id = $id;
-            // $sagiEntry->sr_no = $srno;
-            $sagiEntry->date = $dates[$key];
-            $sagiEntry->vehicle_no = $vehiclenos[$key];
-            $sagiEntry->weight = $weights[$key];
-            $sagiEntry->rate = $rates[$key];
-            $sagiEntry->total = $totals[$key];
-            $sagiEntry->freight = $freights[$key];
-            $sagiEntry->grand_total = $grandtotals[$key];
-            $sagiEntry->payment_given = $paymentgivens[$key];
-            $sagiEntry->payment_notes = $notes[$key];
+// Loop through the arrays and create entries
+foreach ($dates as $key => $date) {
+    // Check if the date is available
+    if (!empty($date)) {
+        $sagiEntry = new Sagientry();
+        $sagiEntry->sagi_id = $id;
+        // $sagiEntry->sr_no = $srno;
+        $sagiEntry->date = $date;
+        $sagiEntry->vehicle_no = $vehiclenos[$key];
+        $sagiEntry->weight = $weights[$key];
+        $sagiEntry->rate = $rates[$key];
+        $sagiEntry->total = $totals[$key];
+        $sagiEntry->freight = $freights[$key];
+        $sagiEntry->grand_total = $grandtotals[$key];
+        $sagiEntry->payment_given = $paymentgivens[$key];
+        $sagiEntry->payment_notes = $notes[$key];
 
-            // Additional fields assignment here if needed
+        // Additional fields assignment here if needed
 
-            // Save the entry
-            $sagiEntry->save();
-        }
+        // Save the entry
+        $sagiEntry->save();
+    }
+}
 
         // Optionally, you can redirect the user after saving
         return redirect("Misc/Sagi/show/" . $id)->with('success','Entry is done Successfully');
