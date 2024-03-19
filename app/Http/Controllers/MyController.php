@@ -96,6 +96,7 @@ class MyController extends Controller
 
         $Permissions = new permission();
         $Permissions->credential_id = $Credentials->id;
+        $Credentials->mobile = $request->input('mobile');
         $Permissions->permissions = json_encode($My_permissions);
         $Permissions->save();
 
@@ -116,6 +117,7 @@ class MyController extends Controller
         $Credentials = credentials::find($request->id);
         $Credentials->name = $request->input('name');
         $Credentials->password = $request->input('password');
+        $Credentials->mobile = $request->input('mobile');
         $Credentials->save();
 
         // Check if a permission record exists for the credential

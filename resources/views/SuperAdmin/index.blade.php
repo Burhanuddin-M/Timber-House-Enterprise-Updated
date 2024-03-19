@@ -110,10 +110,17 @@
                             </div>
 
                             <div class="mb-3">
+                                <label for="mobile" class="form-label">Mobile No</label>
+                                <input type="text" class="form-control" id="mobile" placeholder="eg 918888001212"
+                                    name="mobile">
+                            </div>
+
+                            <div class="mb-3">
                                 <label for="password" class="form-label">Password</label>
                                 <input type="text" class="form-control" id="password" placeholder="Enter Password"
                                     name="password" required>
                             </div>
+
 
                             <div class="mb-3">
                                 <label for="employeeSalary" class="form-label">Permissions</label>
@@ -210,6 +217,14 @@
                                                     <input type="text" class="form-control" id="name"
                                                         placeholder="Enter employee name" name="name"
                                                         value="{{ $Credential->name }}">
+                                                </div>
+                                                <div class="mb-3">
+                                                    <div class="mb-3">
+                                                        <label for="mobile" class="form-label">Mobile No</label>
+                                                        <input type="text" class="form-control" id="password"
+                                                            value="{{ $Credential->mobile }}"
+                                                            placeholder="eg 918888001212" name="mobile">
+                                                    </div>
                                                 </div>
                                                 <div class="mb-3">
                                                     <label for="password" class="form-label">Password</label>

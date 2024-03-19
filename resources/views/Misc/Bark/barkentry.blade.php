@@ -45,6 +45,10 @@
     @endif
 
     <div class="container"><br>
+        <div class="d-flex justify-content-center">
+            <button class="btn btn-primary"><a href="{{route('bark.index')}}"
+                    class="text-decoration-none text-white">&#8592;</a></button>
+        </div><br>
         <h3 class="text-center text-primary">Make Bark/Peeling Entries</h3><br>
 
         <div class="table-responsive">
@@ -67,7 +71,7 @@
                             <td>{{ $Bark->name }}</td>
                             <td><input type="date" name="date" value="{{ date('Y-m-d') }}" required class="form-control"></td>
                             <td>
-                                <select class="form-select form-select-sm" name="type" required>
+                                <select  name="type" required>
                                     <option selected disabled>Select</option>
                                     <option value="long">Long</option>
                                     <option value="short">Short</option>
@@ -98,7 +102,8 @@
                     @foreach($Barks as $Bark)
                     @foreach($Bark->barkentry as $barkentry)
                         <tr>
-                            <td>{{ $barkentry->date }}</td>
+                            <td>{{ \Carbon\Carbon::parse($barkentry->date)->format('jS M y') }}</td>
+
                             <td>{{ $Bark->name }}</td>
                             <td>{{ $barkentry->type }}</td>
                             <td>{{ $barkentry->quantity }}</td>

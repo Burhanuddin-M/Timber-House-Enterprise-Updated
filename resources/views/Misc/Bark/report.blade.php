@@ -24,6 +24,10 @@
 
     <body>
         <div class="container">
+            <div class="d-flex justify-content-center">
+                <button class="btn btn-primary"><a href="{{route('bark.index')}}"
+                        class="text-decoration-none text-white">&#8592;</a></button>
+            </div><br>
             <div class="table-responsive">
                 <table class="table table-stripped"><br>
                     <thead>
