@@ -148,8 +148,8 @@ class MiscController extends Controller
         $Bark = bark::find($id);
 
         $Bark->name = $request->name;
-        $Bark->short_rate = $request->long;
-        $Bark->long_rate = $request->short;
+        $Bark->short_rate = $request->short;
+        $Bark->long_rate = $request->long;
 
         $Bark->save();
         return redirect('Misc/Bark/add')->with('success', 'Employee is updated successfully');
