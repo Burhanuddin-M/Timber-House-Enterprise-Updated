@@ -19,7 +19,7 @@ class MiscController extends Controller
 
     public function turnover_index()
     {
-        return view('Misc.Turnover.index');
+        // return view('Misc.Turnover.index');
         //under maintenace
         return view('Errors.maintenance');
     }
