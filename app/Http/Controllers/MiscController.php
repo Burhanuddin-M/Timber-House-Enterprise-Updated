@@ -19,9 +19,9 @@ class MiscController extends Controller
 
     public function turnover_index()
     {
-        // return view('Misc.Turnover.index');
+        return view('Misc.Turnover.index');
         //under maintenace
-        return view('Errors.maintenance');
+        // return view('Errors.maintenance');
     }
 
     public function sagi_index()
@@ -56,13 +56,13 @@ class MiscController extends Controller
             }
         ])->find($id);
     
-        $GrandTotal = $Sagi->sagientry->sum('grand_total');
+ 
    
 
         $Party_name = $Sagi->party_name;
 
 
-        return view('Misc.Sagi.create_sagi', compact('Party_name', 'id'));
+        return view('Misc.Sagi.create_sagi', compact('Party_name', 'id','Sagi'));
 
 
     }
